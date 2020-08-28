@@ -5,6 +5,7 @@ import java.time.ZonedDateTime
 
 enum Task:
   def id: Id.Id
+  def description: String
   def complete: Task =
     this match
       case a: Active => Completed(a.id, a.description, ZonedDateTime.now())

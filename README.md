@@ -12,11 +12,7 @@ This project contains the backend for the ES week 3 project. This demonstrates t
 
 ## Student Tasks
 
-The version of the code the students will receive will have some problem they need to fix:
-
-- add `libraryDependencies` to get code compiling (week 3 material)
-- fix some bugs in `Model.scala` (refresh week 2 collections and week 3 for running tests)
-- implement `Actions.scala`
+See `QUESTIONS.md` for the student's tasks. A working version is in the `solution` branch.
 
 
 ## UI

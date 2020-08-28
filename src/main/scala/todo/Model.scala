@@ -15,11 +15,10 @@ object Model:
   def create(description: String): Task =
     val id = getNextId
     val task = Task.Active(id, description)
-    tasks += (id -> task)
     task
 
   def read(id: Id.Id): Option[Task] =
-    tasks.get(id)
+    None
 
   def update(id: Id.Id)(f: Task => Task): Option[Task] =
     tasks.updateWith(id)(opt => opt.map(f))
@@ -36,4 +35,7 @@ object Model:
     found
 
   def list: List[Task] =
-    tasks.values.toList.sortBy(task => task.id)
+    List.empty
+
+  def clear: Unit =
+    tasks.clear()

@@ -7,25 +7,18 @@ class DefaultActions() extends Actions:
     Model.create(description)
 
   def read(id: Id.Id): Option[Task] =
-     Model.read(id)
+     None
 
   def update(id: Id.Id, description: String, completed: Boolean): Option[Task] =
-    Model.update(id){ task =>
-      task match
-        case a: Task.Active =>
-          if completed then Task.Completed(a.id, description, ZonedDateTime.now())
-          else Task.Active(a.id, description)
-
-        case c: Task.Completed =>
-          if completed then Task.Completed(c.id, description, c.completedAt)
-          else Task.Active(c.id, description)
-    }
+    None
 
   def delete(id: Id.Id): Boolean =
-    Model.delete(id)
+    true
 
   def list: List[Task] =
-    Model.list
+    List(Task.Active(Id(0), "Learn Scala"),
+         Task.Active(Id(1), "..."),
+         Task.Active(Id(2), "Profit!"))
 
   def complete(id: Id.Id): Option[Task] =
-    Model.update(id)(task => task.complete)
+    None
