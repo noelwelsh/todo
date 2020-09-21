@@ -18,6 +18,7 @@ lazy val root = project
     libraryDependencies ++= Seq(
       ("org.http4s"     %% "http4s-ember-server" % Http4sVersion).withDottyCompat(scalaVersion.value),
       ("io.circe"       %% "circe-generic"       % CirceVersion).withDottyCompat(scalaVersion.value),
+      ("io.circe"       %% "circe-parser"        % CirceVersion).withDottyCompat(scalaVersion.value),
       ("org.http4s"     %% "http4s-circe"        % Http4sVersion).withDottyCompat(scalaVersion.value),
       ("org.http4s"     %% "http4s-dsl"          % Http4sVersion).withDottyCompat(scalaVersion.value),
       "ch.qos.logback"  %  "logback-classic"     % LogbackVersion,
