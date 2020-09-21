@@ -3,37 +3,56 @@ package todo
 import cats.effect.IO
 import org.http4s.HttpRoutes
 import org.http4s.circe._
+import org.http4s.circe.CirceEntityDecoder._
 import io.circe.Encoder
 import io.circe.syntax._
+import todo.data._
 
-class TodoService(actions: Actions):
+class TodoService(model: Model):
   import org.http4s.dsl.io._
+  import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
   object Description extends QueryParamDecoderMatcher[String]("description")
 
   val service: HttpRoutes[IO] =
     HttpRoutes.of[IO]{
       case GET -> Root / "task" / IntVar(id) =>
-        actions.read(Id(id)) match
+        model.read(Id(id)) match
           case None => NotFound()
           case Some(task) => Ok(task.asJson)
 
-      case POST -> Root / "task" :? Description(description) =>
-        val task = actions.create(description)
-        println(task)
-        Ok(task.asJson)
+      case req @ POST -> Root / "task" =>
+        req.decode[Task]{ task =>
+          val id = model.create(task)
+          Ok(id)
+        }
+
+      case req @ POST -> Root / "task" / IntVar(id) =>
+        req.decode[Task]{ task =>
+          val updated = model.update(Id(id))(_ => task)
+          Ok(updated)
+        }
 
       case DELETE -> Root / "task" / IntVar(id) =>
-        if actions.delete(Id(id))
+        if model.delete(Id(id))
           Ok()
         else
           NotFound()
 
       case POST -> Root / "task" / IntVar(id) / "complete" =>
-        actions.complete(Id(id)) match
+        model.complete(Id(id)) match
           case None => NotFound()
           case Some(task) => Ok(task.asJson)
 
-      case GET -> Root / "task" =>
-        val tasks = actions.list
-        Ok(tasks.asJson)
+      case GET -> Root / "tasks" =>
+        val tasks = model.tasks
+        Ok(tasks)
+
+      case GET -> Root / "tasks" / tag =>
+        val tasks = model.tasks(Tag(tag))
+        Ok(tasks)
+
+      case GET -> Root / "tags" =>
+        val tags = model.tags
+        Ok(tags)
+
     }

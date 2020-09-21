@@ -1,4 +1,4 @@
-val dottyVersion = "0.26.0-RC1"
+val dottyVersion = "0.27.0-RC1"
 val Http4sVersion = "1.0.0-M4"
 val CirceVersion = "0.13.0"
 val LogbackVersion = "1.2.3"
@@ -21,7 +21,9 @@ lazy val root = project
       ("org.http4s"     %% "http4s-circe"        % Http4sVersion).withDottyCompat(scalaVersion.value),
       ("org.http4s"     %% "http4s-dsl"          % Http4sVersion).withDottyCompat(scalaVersion.value),
       "ch.qos.logback"  %  "logback-classic"     % LogbackVersion,
-      "com.novocode"    %  "junit-interface"     % "0.11" % "test",
+      "org.scalameta"   %% "munit"               % "0.7.12" % Test,
+      "com.novocode"    %  "junit-interface"     % "0.11" % Test,
       ),
-    scalacOptions += "-language:implicitConversions"
+    scalacOptions += "-language:implicitConversions",
+    testFrameworks += new TestFramework("munit.Framework")
   )

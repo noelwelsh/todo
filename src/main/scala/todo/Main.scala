@@ -12,7 +12,7 @@ import org.http4s.server.middleware.CORS
 object Main extends IOApp:
   private def app(blocker: Blocker): HttpApp[IO] =
     Router.define(
-      "/api" -> CORS(TodoService(DefaultActions()).service)
+      "/api" -> CORS(TodoService(InMemoryModel).service)
     )(AssetService.service(blocker)).orNotFound
 
   private def server(blocker: Blocker): Resource[IO, Server] =
