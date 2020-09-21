@@ -11,6 +11,10 @@ object Tasks:
 
   val empty: Tasks = Tasks(List.empty)
 
+  extension (t: Tasks):
+    def toList: List[(Id, Task)] =
+      t.toList
+
   val elementDecoder = new Decoder[(Id, Task)]:
     def apply(c: HCursor): Decoder.Result[(Id, Task)] =
       for {

@@ -65,3 +65,6 @@ object PersistentModel extends Model:
 
   def tags: Tags =
     ???
+
+  def clear(): Unit =
+    ???

@@ -38,3 +38,7 @@ trait Model:
    * Return all the Tags that are currently in use.
    */
   def tags: Tags
+  /*
+   * Clear any data in the model. Mostly useful for testing.
+   */
+  def clear(): Unit

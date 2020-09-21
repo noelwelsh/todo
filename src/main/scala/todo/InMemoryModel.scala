@@ -54,5 +54,5 @@ object InMemoryModel extends Model:
   def tasks(tag: Tag): Tasks =
     Tasks(idStore.filter{ case (k, v) => v.tags.contains(tag) })
 
-  def clear: Unit =
+  def clear(): Unit =
     idStore.clear()
