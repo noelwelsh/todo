@@ -15,6 +15,9 @@ object Tasks:
     def toList: List[(Id, Task)] =
       t.toList
 
+    def toMap: Map[Id, Task] =
+      t.toMap
+
   val elementDecoder = new Decoder[(Id, Task)]:
     def apply(c: HCursor): Decoder.Result[(Id, Task)] =
       for {
