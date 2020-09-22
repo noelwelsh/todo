@@ -12,7 +12,7 @@ This project contains the backend for the ES week 3 project. This demonstrates t
 
 ## Student Tasks
 
-See `QUESTIONS.md` for the student's tasks. A working version is in the `solution` branch.
+See `QUESTIONS.md` for the student's tasks.
 
 
 ## UI
