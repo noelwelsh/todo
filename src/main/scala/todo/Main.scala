@@ -9,6 +9,9 @@ import org.http4s.server.{Router, Server}
 import org.http4s.syntax.kleisli._
 import org.http4s.server.middleware.CORS
 
+/**
+ * This object setups and runs the webserver.
+ */
 object Main extends IOApp:
   private def app(blocker: Blocker): HttpApp[IO] =
     Router.define(

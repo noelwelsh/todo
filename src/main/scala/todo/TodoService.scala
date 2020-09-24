@@ -8,6 +8,10 @@ import io.circe.Encoder
 import io.circe.syntax._
 import todo.data._
 
+/**
+ * This service provides the API for the user interface. The API endpoints
+ * correspond to methods on the Model. Data is sent over HTTP as JSON.
+ */
 class TodoService(model: Model):
   import org.http4s.dsl.io._
   import org.http4s.circe.CirceEntityCodec.circeEntityEncoder

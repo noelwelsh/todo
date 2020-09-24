@@ -4,6 +4,10 @@ import cats.implicits._
 import scala.collection.mutable
 import todo.data._
 
+/**
+ * The InMemoryModel stores all the tasks in RAM, and hence they are lost when
+ * the server restarts.
+ */
 object InMemoryModel extends Model:
   val defaultTasks = List(
     Id(0) -> Task(State.completedNow, "Complete Effective Scala Week 2", None, List(Tag("programming"), Tag("scala"))),
