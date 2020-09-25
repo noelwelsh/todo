@@ -5,12 +5,12 @@ Try compiling the code in the project. You should quickly run into a problem.
 You should see an error message like
 
 ```
-[error] -- [E008] Not Found Error: /Users/noel/dev/inner-product/scala-center/todo/src/main/scala/todo/TodoService.scala:5:18 
+[error] -- [E008] Not Found Error: /todo/src/main/scala/todo/TodoService.scala:5:18 
 [error] 5 |import org.http4s.circe._
 [error]   |       ^^^^^^^^^^^^^^^^
 [error]   |       value circe is not a member of org.http4s
-[error] -- [E049] Reference Error: /Users/noel/dev/inner-product/scala-center/todo/src/main/scala/todo/TodoService.scala:14:4 
-[error] 14 |    HttpRoutes.of[IO]{
+[error] -- [E049] Reference Error: /todo/src/main/scala/todo/TodoService.scala:21:4 
+[error] 21 |    HttpRoutes.of[IO]{
 [error]    |    ^^^^^^^^^^
 [error]    |Reference to HttpRoutes is ambiguous,
 [error]    |it is both imported by name by import cats.effect.IO
@@ -29,10 +29,10 @@ This is caused by missing dependencies. You need to add the following library de
 
 You will need to add Dotty compatibility to these dependencies (`withDottyCompat`).
 
-With these changes the code should compile. Now run the code (use the `run` command in sbt) and visit `http://localhost:3000/` in your browser. You should see the interface of a simple todo application. Unfortunately it doesn't work! Let's fix it.
+With these changes the code should compile. Now run the code (use the `run` command in sbt) and visit `http://localhost:3000/` in your browser. You should see the interface of a simple todo application. Play around with the interface. Try adding and completing tasks. You will notice that the application does not work. Let's fix it.
 
 
-## Fix the In-Memory Model
+## Overview of the Code Base
 
 The code consists of four components:
 
@@ -43,7 +43,10 @@ The code consists of four components:
 
 We'll focus on the models. We won't need to change other code for the most part (though if you want to take this project further on your own you may wish to do so).
 
-Run the tests from sbt (the `test` command). You'll see the tests are currently failing. Start first on the tests for the `InMemoryModel`. Take a look at `InMemoryModel.scala`. We have provided part of an implementation for you but it doesn't work. Fix the implementation so that the tests pass. When you have done this you will have a working application!
+
+## Fix the In-Memory Model
+
+Run the tests from sbt (the `test` command). You'll see the tests are currently failing. Start first on the tests for the `InMemoryModel`. Take a look at `InMemoryModel.scala`. We have provided part of an implementation for you but it contains mistakes. Fix the implementation so that the tests pass. When you have done this you will have a working application!
 
 
 ## Fix the Persistent Model
